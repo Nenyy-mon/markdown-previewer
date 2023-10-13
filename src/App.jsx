@@ -1,0 +1,47 @@
+import { useState } from "react"
+import Editor from "./Editor"
+import Preview from "./Preview"
+import ReactMarkdown from 'react-markdown'
+const defaultMarkdown = `
+# Welcome to my React Markdown Previewer!
+
+## This is a sub-heading...
+### And here's some other cool stuff:
+
+Heres some code, \`<div></div>\`, between 2 backticks.
+
+\`\`\`
+// this is multi-line code:
+
+function anotherExample(firstLine, lastLine) {
+  if (firstLine == '\`\`\`' && lastLine == '\`\`\`') {
+    return multiLineCode;
+  }
+}
+\`\`\`
+
+You can also make text **bold**... whoa!
+Or _italic_.
+Or... **_both!_**
+
+There's also [links](https://www.youtube.com/watch?v=dQw4w9WgXcQ), and
+> Block Quotes!
+
+![React Logo w/ Text](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/120px-React-icon.svg.png)
+
+- And of course there are lists.
+  - Some are bulleted.
+      - With different indentation levels.
+        - That look like this.
+`;
+function App() {
+  const [markdown, setMarkdown] = useState(defaultMarkdown)
+  return (
+    <div id="wrapper">
+      <Editor   setMarkdown={setMarkdown} markdown={markdown}/>
+      <Preview ReactMarkdown={ReactMarkdown} setMarkdown={setMarkdown} markdown={markdown} />
+    </div>
+  )
+}
+
+export default App
